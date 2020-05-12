@@ -25,6 +25,9 @@ def create_app(config_name):
   #Registering a Blueprint
   from .main import main as main_blueprint
   app.register_blueprint(main_blueprint)
+  #auth
+  from .auth import auth
+  app.register_blueprint(auth)
 
   return app
 
