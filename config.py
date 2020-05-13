@@ -5,6 +5,8 @@ class Config:
   config class to be inheritted by other class
   '''
 
+  SECRET_KEY = os.environ.get('SECRET_KEY')
+
 class ProdConfig(Config):
   '''
   production config class
@@ -14,7 +16,7 @@ class DevConfig(Config):
   '''
   development config class
   '''
-  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://username:password@localhost/sendit'
+  SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://martin:kimani@localhost/sendit'
   ##change the username to your username and password
 
 

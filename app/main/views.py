@@ -4,6 +4,6 @@ from .. import db
 
 
 @main.route('/')
-def login():
+def index():
   
-  return "<h1> ******you are a main login and testing braching ,MARTIN you can merge the Branch  *****</h1>"
+  return render_template('index.html')
