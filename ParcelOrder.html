@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Create Parcel Order</h1>
+
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.id.label }}<br>
+            {{ form.id(size=32) }}<br>
+            
+        </p>
+
+        <p>
+            {{ form.weight.label }}<br>
+            {{ form.weight(size=32) }}<br>
+
+        </p>
+         <p>
+            {{ form.zone.label }}<br>
+            {{ form.zone(size=32) }}<br>
+        </p>
+         <p>
+            {{ form.destination.label }}<br>
+            {{ form.destination(size=32) }}<br>
+
+        </p>
+        <p>
+         {{ form.token.label }}<br>
+            {{ form.token(size=32) }}<br>
+
+        </p>
+
+         <p>
+      {{ form.totalprice.label }}<br>
+            {{ form.totalprice(size=32) }}<br>
+
+        </p>
+
+        <p>
+      {{ form.ParcelTypeName.label }}<br>
+            {{ form.ParcelTypeName(size=32) }}<br>
+
+        </p>
+
+        <p>
+      {{ form.user_id.label }}<br>
+            {{ form.user_id(size=32) }}<br>
+         </p>
+
+        <p>
+      {{ form.user_id.label }}<br>
+            {{ form.user_id(size=32) }}<br>
+        </p>
+
+      <p>
+      {{ form.deleveryStatus.label }}<br>
+            {{ form.deleveryStatus(size=32) }}<br>
+        </p>
+
+
+    </form>
+{% endblock %}
