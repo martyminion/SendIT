@@ -15,3 +15,5 @@ class ParcelOrderForm(FlaskForm):
     deleveryStatus = TextAreaField('deleveryStatus')
     ParcelTypeName = SelectField(u'Parcel Category', choices=[('Perishable', 'Perishable'), ('non Perishable', 'non Perishable'), ('Fragile','Fragile'),(' non Fragile', 'non Fragile')])
     submit = SubmitField('Submit')
+    ***********
+    7777
