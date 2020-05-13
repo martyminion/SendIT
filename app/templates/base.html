@@ -3,19 +3,7 @@
 
 
    {% block styles %}
-   <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+   {{super()}}
+   
    {% endblock %}
 
-    {% block navbar %}
-      {% include 'navbar.html' %}
-    {% endblock %}
-
-   {% block content %}
-  
-   {% endblock %}
-
-
-   {% block scripts %}
-   <script src="{{url_for('static',filename='js/jquery-3.4.1.min.js')}}"></script>
-   <script src="{{url_for('static',filename='js/bootstraps.js')}}"></script>
-   {% endblock %}

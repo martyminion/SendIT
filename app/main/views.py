@@ -5,12 +5,10 @@ from ..tokengenerator import autogenerate_token
 from .forms import ParcelOrderForm
 
 
-
-
 @main.route('/')
 def index():
   
-  return "<h1> ******you are a main login and testing braching ,MARTIN you can merge the Branch  *****</h1>"
+  return render_template('index.html')
 
 @main.route('/ParcelOrder')
 def Order():
