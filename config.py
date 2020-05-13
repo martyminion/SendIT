@@ -5,6 +5,8 @@ class Config:
   config class to be inheritted by other class
   '''
 
+  SECRET_KEY = os.environ.get('SECRET_KEY')
+
 class ProdConfig(Config):
   '''
   production config class

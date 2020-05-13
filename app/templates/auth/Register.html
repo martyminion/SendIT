@@ -1,0 +1,31 @@
+
+{%extends 'base.html'%}
+
+{%import 'bootstrap/wtf.html' as wtf%}
+
+{%block styles%}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename = 'css/loginforms.css')}}">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">
+
+{%endblock%}
+
+
+{%block content%}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-8 allform">
+
+
+      {{wtf.quick_form(Client_reg_form)}}
+
+    </div>
+
+    <div class="col-md-2">
+    </div>
+  </div>
+</div>
+{%endblock%}

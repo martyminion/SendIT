@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div class="container">
+
+    <a href="{{url_for('auth.login')}}">login</a>
+    <a href="{{url_for('auth.regiser_cleint')}}">sign up Client</a>
+    <a href="{{url_for('auth.regiser_new_admin',adminid = current_user.identification)}}">Sign up Admin</a>
+</div>
+
+
+{%endblock%}
