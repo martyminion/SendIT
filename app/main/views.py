@@ -6,7 +6,7 @@ from .forms import ParcelOrderForm
 
 
 @main.route('/')
-def login():
+def index():
   
   return "<h1> ******you are a main login and testing braching ,MARTIN you can merge the Branch  *****</h1>"
 
