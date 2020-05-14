@@ -58,7 +58,7 @@ class Order(db.Model):
   __tablename__ = "orders"
 
   id = db.Column(db.Integer,unique = True, index = True, primary_key = True)
-  weight = db.Column(db.Integer())
+  weight = db.Column(db.String())
   zone = db.Column(db.String(), db.ForeignKey('zones.name'))
   destination = db.Column(db.String(255))
   token = db.Column(db.String(255),unique = True, index = True)
@@ -67,6 +67,7 @@ class Order(db.Model):
   DeliveryTypeid = db.Column(db.Integer, db.ForeignKey('delivery.id'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.identification'))
   deliveryStatus = db.Column(db.String())
+  NumberOfItem   = db.Column(db.Integer())
 
 class Zones(db.Model):
   '''
