@@ -21,7 +21,9 @@ class DevConfig(Config):
   '''
   development config class
   '''
+
   SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://martin:kimani@localhost/sendit'
+
   ##change the username to your username and password
 
 
