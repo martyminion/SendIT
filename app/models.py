@@ -63,11 +63,15 @@ class Order(db.Model):
   destination = db.Column(db.String(255))
   token = db.Column(db.String(255),unique = True, index = True)
   totalprice = db.Column(db.Integer())
-  ParcelTypeid = db.Column(db.Integer, db.ForeignKey('parcel.id'))
-  DeliveryTypeid = db.Column(db.Integer, db.ForeignKey('delivery.id'))
+  ParcelTypename = db.Column(db.String, db.ForeignKey('parcel.name'))
+  DeliveryTypename = db.Column(db.String, db.ForeignKey('delivery.name'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.identification'))
   deliveryStatus = db.Column(db.String())
   NumberOfItem   = db.Column(db.Integer())
+
+  def save_order(self):
+    db.session.add(self)
+    db.session.commit()
 
 class Zones(db.Model):
   '''
