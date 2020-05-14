@@ -12,7 +12,6 @@ from .forms import ParcelOrderForm, UpdateParcelForm
 @main.route('/')
 def index():
 
-  
   return render_template('index.html')
 
 @main.route('/mailtest/')
@@ -35,7 +34,7 @@ def Order():
   form = ParcelOrderForm()
   return render_template('ParcelOrder.html', title='Create a Parcel Order', form=form)
 
-@main.route('/Admin/Update_Parcel')
+@main.route('/Admin/Update_Parcel/')
 def update_parcel():
 
   form = UpdateParcelForm()
@@ -48,8 +47,8 @@ def update_parcel():
 
     mail_message("Parcel location update","email/update_parcel",user.email,user=user)
 
-  return redirect(url_for('main.update_parcel'))
+    return redirect(url_for('main.update_parcel'))
 
-return render_template('index.html', title = 'Current location of the parcel' )
+  return render_template('index.html', title = 'Current location of the parcel' )
 
   
