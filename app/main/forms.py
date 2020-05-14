@@ -1,7 +1,19 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField,SubmitField,SelectField,IntegerField
 from wtforms.validators import Required
+from ..models import DeliveryType,Zones
+from wtforms import ValidationError
+from wtforms import StringField,StringField,IntegerField,SubmitField,BooleanField,ValidationError,SelectField
+
+
+class DestinationForm(FlaskForm):
+    destination= SelectField('Parcel Destination', choices=[('nakuru to nairobi','nairobi to naivasha'),('narobi to mombasa','narobi to mombasa'),('nairobi to eldoret','nairobi to eldoret')])
+    
+  
+    deliverytype = SelectField('delivery type', choices=[('urgent','urgent'),('normal','normal')])
+    
+    submit = SubmitField("Submit")
+
 
 class ParcelOrderForm(FlaskForm):
 
@@ -16,4 +28,5 @@ class UpdateParcelForm(FlaskForm):
 
     location = StringField('Parcel current location')
     submit = SubmitField('Next')
+
 

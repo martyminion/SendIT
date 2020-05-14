@@ -9,6 +9,7 @@ class User(db.Model,UserMixin):
   this has the characteristics of a user
   '''
   __tablename__ = "users"
+
   id = db.Column(db.Integer, index = True,primary_key = True)
   identification = db.Column(db.Integer,unique = True, index = True)
   firstName = db.Column(db.String(255))
@@ -58,11 +59,13 @@ class Order(db.Model):
   __tablename__ = "orders"
 
   id = db.Column(db.Integer,unique = True, index = True, primary_key = True)
+
   weight = db.Column(db.String())
   zone = db.Column(db.String(), db.ForeignKey('zones.name'))
   destination = db.Column(db.String(255))
   token = db.Column(db.String(255),unique = True, index = True)
   totalprice = db.Column(db.Integer())
+
   ParcelTypename = db.Column(db.String, db.ForeignKey('parcel.name'))
   DeliveryTypename = db.Column(db.String, db.ForeignKey('delivery.name'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.identification'))
@@ -114,3 +117,4 @@ class ParcelType(db.Model):
   name = db.Column(db.String(),unique = True)
   cost = db.Column(db.Integer())
   orders = db.relationship('Order',backref = 'parcelT', lazy = 'dynamic')
+

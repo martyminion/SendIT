@@ -1,18 +1,23 @@
 from . import main
-from flask import render_template,request,url_for,flash,redirect
-from .. import db
+from flask import flash,render_template,redirect,url_for,request
+from flask_login import login_user,logout_user,login_required
+from ..models import User,DeliveryType,Zones,Order
 from ..email import mail_message
 from ..tokengenerator import autogenerate_token
-from .forms import ParcelOrderForm, UpdateParcelForm
-from ..models import Order
+from .forms import ParcelOrderForm, UpdateParcelForm,DestinationForm
+from .. import db
 
-
+@main.route('/destination/',methods = ["GET","POST"])
+def destination():
+    form = DestinationForm()
+    if form.validate_on_submit()
+  
+    return render_template('destination.html',destination_form = form)
 
 @main.route('/')
 def index():
-
-  
-  return render_template('index.html')
+title = "SendIT"
+  return render_template('index.html',title = title)
 
 @main.route('/mailtest/')
 def test_email_parameters():
@@ -88,3 +93,4 @@ def update_parcel():
   return render_template('index.html', title = 'Current location of the parcel' )
 
   
+
