@@ -5,7 +5,7 @@ from .. import db
 from ..email import mail_message
 
 from ..tokengenerator import autogenerate_token
-from .forms import ParcelOrderForm
+from .forms import ParcelOrderForm, UpdateParcelForm
 
 
 
@@ -35,3 +35,10 @@ def Order():
   form = ParcelOrderForm()
   return render_template('ParcelOrder.html', title='Create a Parcel Order', form=form)
 
+@main.route('/Admin/Update_Parcel')
+def update_parcel():
+
+  form = ParcelOrderForm()
+    return render_template('Update_parcel.html', title = 'Current location of the parcel' )
+
+  
