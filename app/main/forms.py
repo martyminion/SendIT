@@ -12,3 +12,7 @@ class ParcelOrderForm(FlaskForm):
     ParcelTypeName = SelectField('Parcel Category', choices=[('Perishable', 'Perishable'), ('non Perishable', 'non Perishable'), ('Fragile','Fragile'),(' non Fragile', 'non Fragile')])
     submit = SubmitField('Next')
     
+class UpdateParcelForm(FlaskForm):
+
+    location = StringField('Parcel current location')
+    submit = SubmitField('Next')
