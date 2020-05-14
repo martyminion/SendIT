@@ -1,26 +1,44 @@
 {%extends 'base.html'%}
 
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename = 'css/index.css')}}">
+{% endblock %}
+
 {%block content%}
-<div class="container">
-
-    <a href="{{url_for('auth.login')}}">login</a>
-    <a href="{{url_for('auth.regiser_cleint')}}">sign up Client</a>
-    <a href="{{url_for('auth.regiser_new_admin',adminid = current_user.identification)}}">Sign up Admin</a>
-
-
-
-    <div>
-        <h2>
-            mail
-        </h2>
-        <a href="{{url_for('main.test_email_parameters')}}">Receipt</a>
-        <a href="{{url_for('main.test_email_parameters2')}}">Order</a>
-        
+<div class="container text-center">
+    <div class="quote">
+        <div>
+            <h1 class="quoteh">SendIT</h1>
+        </div>
+        <div>
+            <p class="quotep">
+                "SendIT is an upcoming logistics company, leveraging on technology to provide all our clients with
+                impeccable service.<br>
+                Offering nationwide delivery, with upto 3 days turnaround time for deliveries. <br>
+                Our word is our Bond"
+            </p>
+        </div>
     </div>
-    <a href="{{url_for('main.Order')}}"> Order</a>
 
 
 </div>
 
 
 {%endblock%}
+
+<!-- <a href="{{url_for('auth.login')}}">login</a>
+<a href="{{url_for('auth.regiser_cleint')}}">sign up Client</a>
+<a href="{{url_for('auth.regiser_new_admin',adminid = current_user.identification)}}">Sign up Admin</a>
+
+
+
+<div>
+    <h2>
+        mail
+    </h2>
+    <a href="{{url_for('main.test_email_parameters')}}">Receipt</a>
+    <a href="{{url_for('main.test_email_parameters2')}}">Order</a>
+    
+</div>
+<a href="{{url_for('main.Order')}}"> Order</a> -->

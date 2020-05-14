@@ -9,8 +9,8 @@ class User(db.Model,UserMixin):
   this has the characteristics of a user
   '''
   __tablename__ = "users"
-
-  identification = db.Column(db.Integer,unique = True, index = True, primary_key = True)
+  id = db.Column(db.Integer, index = True,primary_key = True)
+  identification = db.Column(db.Integer,unique = True, index = True)
   firstName = db.Column(db.String(255))
   lastName = db.Column(db.String(255))
   email = db.Column(db.String(255),unique = True, index = True)
