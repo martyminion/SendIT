@@ -4,7 +4,7 @@
 
 
 {% block styles%}
-{{ super() }}
+  {{super()}}
 {% endblock%}
 
 
@@ -18,18 +18,14 @@
     </div>
 
     <div class="col-md-8">
-      {{wtf.quick_form(destination_form)}}
+      <h1>Add Receipient</h1>
+      {{wtf.quick_form(form)}}
     </div>
 
     <div class="col-md-2">
       
     </div>
-    <div class="col-md-2">
-      
-    </div>
-    <div class="col-md-2">
-      
-    </div>
+
   </div>
 
 </div>

@@ -1,37 +1,35 @@
-<!DOCTYPE html>
-<html>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-md navbar-primary bg-primary ">
+    <a class="navtitle" href="{{url_for('main.index')}}"><span>SendIT</span></a>
 
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Courgette|Gloria+Hallelujah|Indie+Flower|Permanent+Marker|Varela+Round" rel="stylesheet">
+        <a style="padding: 5px;" href="{{url_for('main.index')}}"><span>Home</span></a>
+        <a style="padding: 5px;" href="{{url_for('main.index')}}"><span>Services</span></a>
+        {%if current_user.is_authenticated%}
+          {%if current_user.role_id == 1%}
+        <a style=" padding: 15px;" href="{{url_for('auth.regiser_new_admin',adminid = current_user.identification)}}">Add Admin</a>
+        <a style=" padding: 15px;" href="{{url_for('main.allorders')}}">All Orders</a>
+        
+        {%endif%}
+        <a style="padding: 15px;" href="{{url_for('main.Order',userid = current_user.identification)}}"> Place Order</a>
+        {%endif%}
+       
 
-  <meta charset="utf-8">
-  <title></title>
-</head>
+        <a style="padding: 5px;" href="{{url_for('auth.regiser_cleint')}}"> Client sign up </a>
+       
 
-<body>
-  <div class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
 
-        <a style="font-family:Permanent Marker" class="navbar-brand" href="/"> Parcel Destination </a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="/"></a></li>
-        </ul>
+        {%if current_user.is_authenticated%}
+        <a class="" style=" padding: 15px;"href="{{url_for('main.alluserOrders',userID = current_user.identification)}}">
+          <span class="glyphicon glyphicon-user" style="padding: 5px;"></span>
+          {{current_user.firstName}} Orders
+        </a>
+        <a class="" style="padding: 5px;" href="{{url_for('auth.logout')}}"><span class="glyphicon glyphicon-off" id="icon" style="padding: 5px;"></span>Sign Out</a>
+        {%else%}
+        <a class="" style="padding: 5px;" href="{{url_for('auth.login')}}"><span class="glyphicon glyphicon-share" id="icon" style="padding: 5px;"></span>Sign In</a>
+        
+        {%endif%}
 
-        <ul class="nav navbar-nav navbar-right">
+  </nav>
+</div>
 
-        </ul>
-      </div>
-    </div>
-  </div>
-</body>
 
-</html>

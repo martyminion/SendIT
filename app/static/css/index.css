@@ -1,0 +1,18 @@
+body{
+  background-image: url(../images/indexbckn.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}
+.quote{
+  border-top:50px ;
+  padding-top: 100px;
+  background-color:rgba(255, 255, 255, 0.4);
+  padding-bottom: 20px;
+}
+.quotep{
+  font-size: 30px;
+}
+.quoteh{
+  font-size: 70px;
+}
