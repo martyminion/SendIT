@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+
+{% block styles%}
+  {{super()}}
+{% endblock%}
+
+{%block content%}
+  <div class="container text-center">
+      {%if current_user.role_id == 1%}
+      <h1>Client's Orders</h1>
+      {%else%}
+      <h1>Here are all your orders</h1>
+      {%endif%}
+    {%for single_order in orderlist%}
+    <ul>
+      <li> <a href="{{url_for('main.singleorder',token = single_order.token )}}">Token: {{single_order.token}}</a></li>
+     
+      <li> Destinaion: {{single_order.destination}}</li>
+      <li>Status: {{single_order.deliveryStatus}}</li>
+    </ul>
+    {%endfor%}
+  </div>
+{%endblock%}

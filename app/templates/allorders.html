@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+
+
+{% block styles%}
+  {{super()}}
+{% endblock%}
+
+{%block content%}
+  <div class="container text-center">
+
+    {%for single_order in order_list%}
+    <ul>
+      <li> <a href="{{url_for('main.singleorder',token = single_order.token )}}">{{single_order.token}}</a></li>
+     
+      <li>{{single_order.token}}</li>
+      <li>{{single_order.deliveryStatus}}</li>
+    </ul>
+    <a class="btn btn-danger"  href="{{url_for('main.update_parcel',tokenid = single_order.token)}}">Update Status</a>
+    {%endfor%}
+  </div>
+{%endblock%}

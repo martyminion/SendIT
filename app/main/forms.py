@@ -9,7 +9,7 @@ from wtforms import StringField,StringField,IntegerField,SubmitField,BooleanFiel
 class DestinationForm(FlaskForm):
     destination= SelectField('Parcel Destination', choices=[('nakuru to nairobi','nairobi to naivasha'),('narobi to mombasa','narobi to mombasa'),('nairobi to eldoret','nairobi to eldoret')])
     deliverytype = SelectField('delivery type', choices=[('urgent','urgent'),('normal','normal')])
-    submit = SubmitField("Submit")
+    submit = SubmitField("Next")
 
 
 class ParcelOrderForm(FlaskForm):
@@ -21,6 +21,12 @@ class ParcelOrderForm(FlaskForm):
 
 class UpdateParcelForm(FlaskForm):
     location = StringField('Parcel current location')
-    submit = SubmitField('Next')
+    delivery = StringField('Parcel Delivery Status')
+    submit = SubmitField('Done')
 
-
+class ReceipientForm(FlaskForm):
+    FullName = StringField('Receipients Full Name',validators=[Required()])
+    contact = StringField('Receipients Phone NUmber',validators=[Required()])
+    email = StringField('Receipients email',validators=[Required()])
+    identification = IntegerField('Receipients ID number or Passport Number',validators=[Required()])
+    submit = SubmitField("Add Receipient")

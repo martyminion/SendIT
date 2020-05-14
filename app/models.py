@@ -21,7 +21,7 @@ class User(db.Model,UserMixin):
   role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
   payment_name = db.Column(db.String,db.ForeignKey('payment.name'))
   orders = db.relationship('Orders',backref = 'order', lazy = 'dynamic')
-
+  receipients = db.relationship('Receipient',backref = 'receipient', lazy = 'dynamic')
   @property
   def password(self):
     raise AttributeError('You cannot access the password attribute')
@@ -68,11 +68,30 @@ class Orders(db.Model):
   DeliveryTypename = db.Column(db.String, db.ForeignKey('delivery.name'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.identification'))
   deliveryStatus = db.Column(db.String())
-  NumberOfItem   = db.Column(db.String())
+  NumberOfItem  = db.Column(db.Integer())
 
   def save_order(self):
     db.session.add(self)
     db.session.commit()
+
+  @classmethod
+  def get_order_by_token(cls,tokenid):
+
+    singleorder = Orders.query.filter_by(token = tokenid).first()
+
+    return singleorder
+
+  def get_all_orders():
+    orderlist = Orders.query.all()
+
+    return orderlist
+
+  @classmethod
+  def get_order_by_userID(cls,userID):
+    orderlist = Orders.query.filter_by(user_id = userID)
+
+    return orderlist
+
 
 class Zones(db.Model):
   '''
@@ -116,3 +135,21 @@ class ParcelType(db.Model):
   cost = db.Column(db.Integer())
   orders = db.relationship('Orders',backref = 'parcelT', lazy = 'dynamic')
 
+class Receipient(db.Model):
+
+  '''
+  this has the characteristics of a receipient
+  '''
+  __tablename__ = "receipient"
+
+  id = db.Column(db.Integer, index = True,primary_key = True)
+  identification = db.Column(db.Integer,unique = True, index = True)
+  FullName = db.Column(db.String(255))
+  contact = db.Column(db.String(255))
+  email = db.Column(db.String(255),unique = True, index = True)
+  user_id = db.Column(db.Integer,db.ForeignKey('users.identification'))
+
+  @classmethod
+  def get_receipient(cls,userid):
+    newRecepient = Receipient.query.filter_by(user_id = userid).first()
+    return newRecepient

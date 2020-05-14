@@ -1,7 +1,7 @@
 Hello {{user.firstname}}
 
 We ensure high quality service by frequent communication with our clients.
-As of now, we would like to inform you that your parcel is at {{}}.
+As of now, we would like to inform you that your parcel is at {{orderdets.destination}}.
 We will inform ou and the recipient upon arrival on it's final destination.
 
 Yours sincerely,

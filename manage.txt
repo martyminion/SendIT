@@ -3,7 +3,12 @@ get all orders for admin()
 recipient form
 
 
-Ali logic destnation?
-
-billos logic done
-
+new_parcel = ParcelType(name = "Perishable")
+>>> new_parcel2 = ParcelType(name = "non Perishable")
+>>> new_parcel3 = ParcelType(name = "Fragile")
+>>> new_parcel4 = ParcelType(name = "non Fragile")
+>>> db.session.add(new_parcel)
+>>> db.session.add(new_parcel2)
+>>> db.session.add(new_parcel3)
+>>> db.session.add(new_parcel4)
+>>> db.session.commit()
