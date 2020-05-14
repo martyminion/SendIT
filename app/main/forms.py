@@ -14,4 +14,9 @@ class ParcelOrderForm(FlaskForm):
     NumberOfItem = SelectField('Number Of Item' , choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8')])
     submit = SubmitField('Next')
     
-    
+
+class UpdateParcelForm(FlaskForm):
+
+    location = StringField('Parcel current location')
+    submit = SubmitField('Next')
+
