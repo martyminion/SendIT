@@ -20,6 +20,11 @@ def index():
   title = "SendIT"
   return render_template('index.html',title = title)
 
+@main.route('/services')
+def services():
+  title = "Services"
+  return render_template('services.html',title = title)
+
 @main.route('/mailtest/')
 def test_email_parameters():
   
@@ -80,7 +85,7 @@ def Order(userid):
 def update_parcel(tokenid):
 
   form = UpdateParcelForm()
-    orderdets = Orders.query.filter_by(token = tokenid).first()
+  orderdets = Orders.query.filter_by(token = tokenid).first()
 
   if form.validate_on_submit():
     location = form.destination.data

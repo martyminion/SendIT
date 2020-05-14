@@ -3,7 +3,7 @@
     <a class="navtitle" href="{{url_for('main.index')}}"><span>SendIT</span></a>
 
         <a style="padding: 5px;" href="{{url_for('main.index')}}"><span>Home</span></a>
-        <a style="padding: 5px;" href="{{url_for('main.index')}}"><span>Services</span></a>
+        <a style="padding: 5px;" href="{{url_for('main.services')}}"><span>Services</span></a>
         {%if current_user.is_authenticated%}
           {%if current_user.role_id == 1%}
         <a style=" padding: 15px;" href="{{url_for('auth.regiser_new_admin',adminid = current_user.identification)}}">Add Admin</a>

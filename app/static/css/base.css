@@ -18,3 +18,9 @@ body{
   background-repeat: no-repeat;
   
 }
+.services, p, h3, h2{
+  /* background-image: url(../photos/h.jpeg); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Raleway', sans-serif;
+}
