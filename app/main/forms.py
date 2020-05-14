@@ -8,9 +8,8 @@ from wtforms import StringField,StringField,IntegerField,SubmitField,BooleanFiel
 
 class DestinationForm(FlaskForm):
     destination= SelectField('Parcel Destination', choices=[('nakuru to nairobi','nairobi to naivasha'),('narobi to mombasa','narobi to mombasa'),('nairobi to eldoret','nairobi to eldoret')])
-    deliverytype = SelectField('delivery type', choices=[('urgent','urgent'),('normal','normal')])
+    deliverytype = SelectField('Delivery type', choices=[('express','express'),('normal','normal')])
     submit = SubmitField("Next")
-
 
 class ParcelOrderForm(FlaskForm):
     weight = SelectField('Weight', choices=[('less than 1kg','less than 1kg'),('between 1kg and 2kg','between 1kg and 2kg'),('between 2.1kg and 3kg','between 2.1kg and 3kg'),("heavier than 3kg","heavier than 3kg")])
@@ -18,7 +17,6 @@ class ParcelOrderForm(FlaskForm):
     NumberOfItem = SelectField('Number Of Item' , choices=[('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),('6','6'),('7','7'),('8','8')])
     submit = SubmitField('Next')
     
-
 class UpdateParcelForm(FlaskForm):
     location = StringField('Parcel current location')
     delivery = StringField('Parcel Delivery Status')

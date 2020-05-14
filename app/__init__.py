@@ -8,6 +8,7 @@ from flask_login import LoginManager
 from flask_mail import Mail
 
 
+
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 login_manager = LoginManager()
@@ -33,7 +34,6 @@ def create_app(config_name):
   login_manager.init_app(app)
   #email
   mail.init_app(app)
-
   #Registering a Blueprint
   from .main import main as main_blueprint
   app.register_blueprint(main_blueprint)

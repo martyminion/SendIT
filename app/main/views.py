@@ -71,10 +71,30 @@ def Order(userid):
 def destination(newtoken):
     form = DestinationForm()
     new_order = Orders.query.filter_by(token = newtoken).first()
+    cost = new_order.totalprice + 500
     if form.validate_on_submit():
+      if form.destination.data == "nairobi to naivasha":
+                 cost = cost + 200 
+
+                elif form.destination.data == "narobi to mombasa":
+                 cost = cost + 500
+
+                elif form.destination.data == 'nairobi to eldoret':
+                 cost = cost + 800
+
+                else:
+                 flash("Please choose a valid option")
+                #check the parcel order type
+                if form.deliverytype == "urgent":
+                 cost = cost + 800
+
+                elif form.deliverytype == " normal":
+                 cost =  cost + 200
+                
       new_order.destination = form.destination.data
       new_order.DeliveryTypename = form.deliverytype.data
-      
+      new_order.totalprice = cost
+      db.session.commit()
       return redirect(url_for('main.singleorder', token = new_order.token))
   
     return render_template('destination.html',destination_form = form)
@@ -86,12 +106,10 @@ def update_parcel(tokenid):
 
   form = UpdateParcelForm()
   orderdets = Orders.query.filter_by(token = tokenid).first()
-
   if form.validate_on_submit():
     location = form.destination.data
     orderdets.destination = location
     db.session.commit()
-
     mail_message("Parcel location update","email/update",user.email,user=user,orderdets = orderdets)
     if Receipient.get_receipient(orderdets.user_id):
       mailreceipt = Receipient.get_receipient(orderdets.user_id)
@@ -147,3 +165,4 @@ def receipientdetails(tokenid,userid):
     return redirect(url_for('main.singleorder',token = tokenid)) 
 
   return render_template('receipientform.html',form = form, title = "Add receipient")
+
