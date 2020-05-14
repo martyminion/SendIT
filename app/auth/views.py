@@ -47,10 +47,10 @@ def regiser_new_admin(adminid):
 def regiser_cleint():
   Client_reg_form = ClientRegistrationForm()
   if Client_reg_form.validate_on_submit():
-      new_cient = User(identification = Admin_reg_form.identification.data,
-      firstName = Admin_reg_form.firstName.data, lastName =Admin_reg_form.lastName.data,
-       email=Admin_reg_form.email.data, Address = Admin_reg_form.address.data,
-      role_id = 2, payment_name = Admin_reg_form.payment.data, password = Admin_reg_form.password.data)
+      new_client = User(identification = Client_reg_form.identification.data,
+      firstName = Client_reg_form.firstName.data, lastName =Client_reg_form.lastName.data,
+      email=Client_reg_form.email.data, Address = Client_reg_form.address.data,
+      role_id = 2, payment_name = Client_reg_form.payment.data, password = Client_reg_form.password.data)
 
       db.session.add(new_client)
       db.session.commit()
@@ -59,3 +59,9 @@ def regiser_cleint():
   title = 'Register Client'
 
   return render_template('auth/Register.html',title = title, Client_reg_form = Client_reg_form)
+
+@auth.route("/logout")
+@login_required
+def logout():
+  logout_user()
+  return redirect(url_for('main.index'))
