@@ -1,1 +1,9 @@
-new_Admin = User(identification = 987456,firstName="lee",lastName="kim",email="marty@gmail.com",pass_secure = "pbkdf2:sha256:150000$QY6zftdJ$6105486194e6e08dd825dda9ee817a5927e8588f436727045e0775f9f4c6b4fb",role_id=1)
+get all orders for admin()
+
+recipient form
+
+
+Ali logic destnation?
+
+billos logic done
+

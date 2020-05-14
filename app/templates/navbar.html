@@ -8,10 +8,9 @@
           {%if current_user.role_id == 1%}
         <a style=" padding: 15px;" href="{{url_for('auth.regiser_new_admin',adminid = current_user.identification)}}">Add Admin</a>
         {%endif%}
-        
-       
+        <a style="padding: 15px;" href="{{url_for('main.Order',userid = current_user.identification)}}"> Place Order</a>
         {%endif%}
-        <a style="padding: 15px;" href="{{url_for('main.Order')}}"> Place Order</a>
+       
 
         <a style="padding: 5px;" href="{{url_for('auth.regiser_cleint')}}"> Client sign up </a>
        

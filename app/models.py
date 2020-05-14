@@ -20,7 +20,7 @@ class User(db.Model,UserMixin):
   contactNumber = db.Column(db.String(),unique = True)
   role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
   payment_name = db.Column(db.String,db.ForeignKey('payment.name'))
-  orders = db.relationship('Order',backref = 'order', lazy = 'dynamic')
+  orders = db.relationship('Orders',backref = 'order', lazy = 'dynamic')
 
   @property
   def password(self):
@@ -51,7 +51,7 @@ class PaymentMethod(db.Model):
   name = db.Column(db.String(255),unique = True)
   users = db.relationship('User',backref = 'payment', lazy = 'dynamic')
 
-class Order(db.Model):
+class Orders(db.Model):
 
   '''
   this will be the attributes of an order
@@ -59,18 +59,16 @@ class Order(db.Model):
   __tablename__ = "orders"
 
   id = db.Column(db.Integer,unique = True, index = True, primary_key = True)
-
   weight = db.Column(db.String())
   zone = db.Column(db.String(), db.ForeignKey('zones.name'))
   destination = db.Column(db.String(255))
   token = db.Column(db.String(255),unique = True, index = True)
   totalprice = db.Column(db.Integer())
-
   ParcelTypename = db.Column(db.String, db.ForeignKey('parcel.name'))
   DeliveryTypename = db.Column(db.String, db.ForeignKey('delivery.name'))
   user_id = db.Column(db.Integer,db.ForeignKey('users.identification'))
   deliveryStatus = db.Column(db.String())
-  NumberOfItem   = db.Column(db.Integer())
+  NumberOfItem   = db.Column(db.String())
 
   def save_order(self):
     db.session.add(self)
@@ -85,7 +83,7 @@ class Zones(db.Model):
   id = db.Column(db.Integer,unique = True, index = True, primary_key = True)
   name = db.Column(db.String(),unique = True )
   cost = db.Column(db.Integer)
-  orders = db.relationship('Order',backref = 'zones', lazy = 'dynamic')
+  orders = db.relationship('Orders',backref = 'zones', lazy = 'dynamic')
 
 class DeliveryType(db.Model):
   '''
@@ -95,7 +93,7 @@ class DeliveryType(db.Model):
   
   id = db.Column(db.Integer,unique = True, index = True, primary_key = True)
   name = db.Column(db.String(),unique = True)
-  orders = db.relationship('Order',backref = 'deliveryT', lazy = 'dynamic')
+  orders = db.relationship('Orders',backref = 'deliveryT', lazy = 'dynamic')
 
 class Roles(db.Model):
   '''
@@ -116,5 +114,5 @@ class ParcelType(db.Model):
   id = db.Column(db.Integer,unique = True, index = True, primary_key = True)
   name = db.Column(db.String(),unique = True)
   cost = db.Column(db.Integer())
-  orders = db.relationship('Order',backref = 'parcelT', lazy = 'dynamic')
+  orders = db.relationship('Orders',backref = 'parcelT', lazy = 'dynamic')
 
