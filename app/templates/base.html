@@ -2,5 +2,18 @@
 {% extends 'bootstrap/base.html'%}
 
 
+{% block navbar %}
+  {% include 'navbar.html' %}
+{% endblock %}
+
+{%block styles %}
+{{super()}}
+
+{{ simplemde.css}}
+{{ simplemde.js }}
 
 
+
+
+<link href="https://fonts.googleapis.com/css?family=Courgette|Gloria+Hallelujah|Indie+Flower|Permanent+Marker|Varela+Round" rel="stylesheet">
+{% endblock %}
