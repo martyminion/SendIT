@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, SubmitField, StringField, PasswordField,IntegerField
-from wtforms.validators import Required,Email,EqualTo,email
+from wtforms.validators import Required,Email,EqualTo,email,ValidationError
 from ..models import User
 
 class LoginForm(FlaskForm):
@@ -33,11 +33,11 @@ class AdminRegistrationForm(FlaskForm):
       raise ValidationError("There's an account with that email")
 
   def validate_identification(self,data_field):
-    if User.query.filter_by(identification = data_field.identification).first():
+    if User.query.filter_by(identification = data_field.data).first():
       raise ValidationError("There's an account with that identification Number")      
   
   def validate_contactNumber(self,data_field):
-    if User.query.filter_by(contactNumber = data_field.contactNumber).first():
+    if User.query.filter_by(contactNumber = data_field.data).first():
       raise ValidationError("There's an account with that Phone Number")      
 
 class ClientRegistrationForm(FlaskForm):
@@ -61,7 +61,7 @@ class ClientRegistrationForm(FlaskForm):
       raise ValidationError("There's an account with that email")
 
   def validate_identification(self,data_field):
-    if User.query.filter_by(identification = data_field.identification).first():
+    if User.query.filter_by(identification = data_field.data).first():
       raise ValidationError("There's an account with that identification Number")      
 
 
