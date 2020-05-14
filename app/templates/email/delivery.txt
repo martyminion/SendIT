@@ -1,0 +1,9 @@
+Hello {{user.firstname}}
+
+We hope you are doing well. We would like to inform you that the parcel has reached its final destination.
+The generated token:{{}} will be used during clearance of the parcel.
+Incase of any mishandlment, feel free to contact us.
+Thank you for choosing SendIt as your trusted courrier service.
+
+Regards,
+SendIt Team.
