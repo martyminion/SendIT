@@ -1,0 +1,20 @@
+.navtitle{
+  font-size: 30px;
+  color: black;
+  padding-left: 50px;
+  padding-right: 50px;
+  
+}
+.navbar{
+  border-radius: 10px;
+  margin-top: 10px;
+}
+a{
+  color: aliceblue;
+}
+body{
+  background-image: url(../images/indexbckn.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}

@@ -1,0 +1,10 @@
+Hello {{user.firstname}}
+
+These are the details of your order:
+Generated token:{{}}
+Weight:{{}}
+Category:{{}}
+Expected date of arrival:{{}}
+
+Have a nice day,
+SendIt team.

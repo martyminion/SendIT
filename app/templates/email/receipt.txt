@@ -1,0 +1,8 @@
+Hello {{user.firstname}}.
+We hope this email finds you well.  
+This is the reciept of the payments with a special token that will be generated and used to when picking the parcel.
+Your total cost was {{}}.
+Generated token for clearance {{}}.
+
+Thanks for working with us,
+SendIt team.
