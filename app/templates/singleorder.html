@@ -17,6 +17,7 @@
       <li>{{single_order.DeliveryTypename}}</li>
       <li>{{single_order.deliveryStatus}}</li>
       <li>{{single_order.NumberofItem}}</li>
+      <li>{{single_order.totalprice}}</li>
     </ul>
 
     <a class="btn btn-danger" href="{{url_for('main.cancel_order',token = single_order.token)}}">Cancel Order</a>

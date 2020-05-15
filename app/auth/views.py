@@ -38,10 +38,10 @@ def regiser_new_admin(adminid):
       db.session.commit()
       flash("Added new Admin User")
 
-      return redirect(request.referrer)
+      return redirect(url_for('auth.login'))
   title = 'Register Admin'
 
-  return render_template('auth/Register.html',title = title, Admin_reg_form = Admin_reg_form)
+  return render_template('auth/AdminRegister.html',title = title, Admin_reg_form = Admin_reg_form)
 
 @auth.route('/register/client', methods = ['GET','POST'])
 def regiser_cleint():
