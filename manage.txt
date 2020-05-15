@@ -26,4 +26,4 @@ new_parcel = ParcelType(name = "Perishable")
 >>> new_delivery2 = DeliveryType(name = 'normal')
 >>> db.session.add(new_delivery)
 >>> db.session.add(new_delivery2)
->>> db.session.commit()
+>>> db.session.commit() -b 
