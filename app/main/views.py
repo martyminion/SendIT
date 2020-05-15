@@ -27,8 +27,10 @@ def confirm_order(tokenid, userID):
   db.session.commit()
   user = User.query.filter_by(identification=userID).first()
   mail_message("This is your receipt", "email/receipt", user.email, user=user, orderdets=orderdets)
+  if Receipient.get_receipient(orderdets.user_id):
+      mailreceipt = Receipient.get_receipient(orderdets.user_id)
+      mail_message("Parcel location update","email/update",mailreceipt.email,user=user,orderdets = orderdets)
   
-
   return redirect(url_for('main.index'))
 
 
@@ -117,8 +119,10 @@ def update_parcel(tokenid):
   form = UpdateParcelForm()
   orderdets = Orders.query.filter_by(token = tokenid).first()
   if form.validate_on_submit():
-    location = form.destination.data
+    location = form.location.data
+    status = form.delivery.data
     orderdets.destination = location
+    orderdets.deliveryStatus = status
     db.session.commit()
     mail_message("Parcel location update","email/update",user.email,user=user,orderdets = orderdets)
     if Receipient.get_receipient(orderdets.user_id):
