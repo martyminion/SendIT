@@ -14,6 +14,11 @@ def index():
   return render_template('index.html', title=title)
 
 
+@main.route('/services')
+def services():
+  title = "Services"
+  return render_template('services.html',title = title)
+
 @main.route('/confirm/<tokenid>/<userID>', methods=['GET', 'POST'])
 def confirm_order(tokenid, userID):
   flash("Order Confirmed Successfully")
@@ -23,6 +28,7 @@ def confirm_order(tokenid, userID):
   user = User.query.filter_by(identification=userID).first()
   mail_message("This is your receipt", "email/receipt", user.email, user=user, orderdets=orderdets)
   
+
   return redirect(url_for('main.index'))
 
 
@@ -88,12 +94,12 @@ def destination(newtoken):
 
       else:
         flash("Please choose a valid option")
-        # check the parcel order type
-        if form.deliverytype == "urgent":
-          cost = cost + 800
+      #check the parcel order type
+      if form.deliverytype == "express":
+        cost = cost + 800
 
-        elif form.deliverytype == " normal":
-          cost =  cost + 200
+      elif form.deliverytype == " normal":
+        cost =  cost + 200
                 
       new_order.destination = form.destination.data
       new_order.DeliveryTypename = form.deliverytype.data

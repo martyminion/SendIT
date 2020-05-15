@@ -18,3 +18,18 @@ body{
   background-repeat: no-repeat;
   
 }
+.services{
+  background-image: url(../photos/backg2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: 25px;
+  margin-right: 25px;
+  
+}
+p, h3, h2{
+  font-family: 'Raleway', sans-serif;
+  color: black;
+}
+.image4, .image5, .image6, .image6, .image7, .image8, .image9{
+  padding-right: 40px;
+}
