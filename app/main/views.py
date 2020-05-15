@@ -6,7 +6,7 @@ from ..email import mail_message
 from ..tokengenerator import autogenerate_token
 from .forms import ParcelOrderForm, UpdateParcelForm, DestinationForm, ReceipientForm
 from .. import db
-
+from sqlalchemy import desc
 
 @main.route('/')
 def index():
@@ -124,6 +124,7 @@ def update_parcel(tokenid):
     orderdets.destination = location
     orderdets.deliveryStatus = status
     db.session.commit()
+    user = User.query.filter_by(identification = orderdets.user_id).first()
     mail_message("Parcel location update","email/update",user.email,user=user,orderdets = orderdets)
     if Receipient.get_receipient(orderdets.user_id):
       mailreceipt = Receipient.get_receipient(orderdets.user_id)

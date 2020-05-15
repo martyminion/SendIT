@@ -4,22 +4,28 @@
 
 
 {% block styles%}
-  {{super()}}
-  <link rel="stylesheet" href="{{url_for('static',filename = 'css/base.css')}}">
-  <style> @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');</style>
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename = 'css/base.css')}}">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+</style>
 {% endblock%}
 
 {%block content%}
-  <div class="container text-center">
+<div class="container text-center">
 
-    {%for single_order in order_list%}
-    <ul>
-      <li> <a href="{{url_for('main.singleorder',token = single_order.token )}}">{{single_order.token}}</a></li>
-     
-      <li>{{single_order.token}}</li>
-      <li>{{single_order.deliveryStatus}}</li>
+  {%for single_order in order_list%}
+  <div>
+    <ul style="list-style: none;">
+      <li style="color: black; font-size: 15px;"> <a
+          href="{{url_for('main.singleorder',token = single_order.token )}}">Token: {{single_order.token}}</a></li>
+
+      <li style="color: black; font-size: 15px;">{{single_order.user_id}}</li>
+      <li style="color: black; font-size: 15px;">{{single_order.deliveryStatus}}</li>
+      <li style="color: black; font-size: 15px;">{{single_order.totalprice}}</li>
     </ul>
-    <a class="btn btn-danger"  href="{{url_for('main.update_parcel',tokenid = single_order.token)}}">Update Status</a>
+    <a class="btn btn-danger" href="{{url_for('main.update_parcel',tokenid = single_order.token)}}">Update Status</a>
     {%endfor%}
   </div>
+</div>
 {%endblock%}

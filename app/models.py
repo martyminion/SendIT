@@ -2,6 +2,7 @@ from . import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash,check_password_hash
 from . import login_manager
+from sqlalchemy import desc
 
 
 class User(db.Model,UserMixin):
@@ -82,7 +83,9 @@ class Orders(db.Model):
     return singleorder
 
   def get_all_orders():
-    orderlist = Orders.query.all()
+    orderlist = Orders.query.order_by(desc(Orders.id)).all()
+
+     
 
     return orderlist
 
