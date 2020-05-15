@@ -1,0 +1,95 @@
+{%extends 'base.html'%}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static',filename = 'css/index.css')}}">
+<style> @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');</style>
+{% endblock %}
+
+{%block content%}
+<div class="services">
+<h2><b>SERVICE COSTS</b></h2>
+    <p>Prices are dependent on the following factors:Zones,Urgency</p>
+    <p>Standard price for delivery = 500/=</p>
+    <div class = "row">
+        <div class = "col-md-3">
+            <h3><b>ZONES</b></h3>
+                <li>
+                    <ul>Within Nairobi = 500/=</ul>
+                    <ul>Nairobi to Naivasha = +200/=</ul>
+                    <ul>Nairobi to Mombasa = +500/=</ul>
+                    <ul>Nairobi to Eldoret= +/=</ul>
+
+                </li>
+        </div>
+        <div class= "col-md-3">
+            <h3><b>WEIGHT</b></h3>
+            <li>
+                <ul>Less than 1 kg = +500/=</ul>
+                <ul>Between 1kg and 2kg = +1000/= </ul>
+                <ul>Between 2kg and 3kg = +1500/=</ul>
+                <ul>More than 3kg = +2000/=</ul>
+            </li>
+        </div>
+        <div class= "col-md-3">
+            <h3><b>TYPE</b></h3>
+            <li>
+                <ul>Perishable = +800/=</ul>
+                <ul>Non-perishable = +200/=</ul>
+                <ul>Fragile = +1000/=</ul>
+                <ul>Non-fragile = +200/=</ul>
+            </li>
+        </div>
+    </div>
+    <p>If the parcel is being exported/imported the you as the client can pick from the following companies of choice as your desired courier.</p>
+    <p><b>*THERE ARE NO STANDARD PRICES FOR IMPORTATION AS PRICES FLACTUATE.</b></p><br><br><br>
+
+    <div class= "container">
+    <h3><b>SHIPPING COMPANIES</b></h3>
+    <div class = "row">
+        <div class="col-md-4">
+                <div class="caurousel-caption text1"><b>Maersk</b></div>
+                    <img src="{{url_for('static',filename = 'photos/maersk.jpeg')}}" class="image1">
+        </div>
+        <div class="col-md-4">
+                <div class="caurousel-caption text2"><b>Evergreen</b></div>
+                    <img src="{{url_for('static',filename = 'photos/evergreen.jpeg')}}" class="image2">
+        </div>
+        <div class="col-md-4">
+                <div class="caurousel-caption text3"><b>M.S.C</b></div>
+                    <img src="{{url_for('static',filename = 'photos/msc.jpeg')}}" class="image3">
+        </div>
+    </div>
+    <h3><b>AIR CARGO COMPANIES</b></h3>
+    <div class = "row">
+        <div class="col-md-4">
+                <div class="caurousel-caption text4"><b>Emirates</b></div>
+                    <img src="{{url_for('static',filename = 'photos/emirates.jpeg')}}" class="image4">
+        </div>
+        <div class="col-md-4">
+                <div class="caurousel-caption text5"><b>Turkish Airlines</b></div>
+                    <img src="{{url_for('static',filename = 'photos/turkish.jpeg')}}" class="image5">
+        </div>
+        <div class="col-md-4">
+                <div class="caurousel-caption text6"><b>Delta</b></div>
+                    <img src="{{url_for('static',filename = 'photos/delta.jpeg')}}" class="image6">
+        </div>
+    </div>>
+    <div class = "row">
+        <div class="col-md-4">
+                <div class="caurousel-caption text7"><b>Virgin Airlines</b></div>
+                    <img src="{{url_for('static',filename = 'photos/virgin.jpeg')}}" class="image7">
+        </div>
+        <div class="col-md-4">
+                <div class="caurousel-caption text8"><b>K.L.M</b></div>
+                    <img src="{{url_for('static',filename = 'photos/klm.jpeg')}}" class="image8">
+        </div>
+        <div class="col-md-4">
+                <div class="caurousel-caption text9"><b>Qatar</b></div>
+                    <img src="{{url_for('static',filename = 'photos/qatar.jpeg')}}" class="image9">
+        </div>
+    </div>
+    </div>
+</div>   
+
+{%endblock%}

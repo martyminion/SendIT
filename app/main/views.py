@@ -13,14 +13,15 @@ def index():
   title = "SendIT"
   return render_template('index.html',title = title)
 
-@main.route('/confirm/<tokenid>/<userID>',methods = ['GET','POST'])
-def confirm_order(tokenid,userID):
-  flash("Order Confirmed Successfully")
-  orderdets = Orders.get_order_by_token(tokenid)
-  orderdets.deliveryStatus = "Client Confirmed"
-  db.session.commit()
-  user = User.query.filter_by(identification = userID).first()
-  mail_message("This is your receipt","email/receipt",user.email,user = user,orderdets = orderdets)
+@main.route('/services')
+def services():
+  title = "Services"
+  return render_template('services.html',title = title)
+
+@main.route('/mailtest/')
+def test_email_parameters():
+  
+  mail_message("This is your receipt","email/receipt","martkimwaweru@gmail.com")
   return redirect(url_for('main.index'))
 
 
@@ -76,20 +77,20 @@ def destination(newtoken):
       if form.destination.data == "nairobi to naivasha":
                  cost = cost + 200 
 
-                elif form.destination.data == "narobi to mombasa":
-                 cost = cost + 500
+      elif form.destination.data == "narobi to mombasa":
+        cost = cost + 500
 
-                elif form.destination.data == 'nairobi to eldoret':
-                 cost = cost + 800
+      elif form.destination.data == 'nairobi to eldoret':
+        cost = cost + 800
 
-                else:
-                 flash("Please choose a valid option")
-                #check the parcel order type
-                if form.deliverytype == "urgent":
-                 cost = cost + 800
+      else:
+        flash("Please choose a valid option")
+      #check the parcel order type
+      if form.deliverytype == "urgent":
+        cost = cost + 800
 
-                elif form.deliverytype == " normal":
-                 cost =  cost + 200
+      elif form.deliverytype == " normal":
+        cost =  cost + 200
                 
       new_order.destination = form.destination.data
       new_order.DeliveryTypename = form.deliverytype.data
