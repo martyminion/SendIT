@@ -20,12 +20,13 @@
         <p>{{single_order.DeliveryTypename}}</p>
         <p>{{single_order.deliveryStatus}}</p>
         <p>{{single_order.NumberofItem}}</p>
+        <p>{{single_order.totalprice}}<p/>
       </ul>
 
-      <a class="btn btn-danger" href="{{url_for('main.cancel_order',token = single_order.token)}}">Cancel Order</a>
-      <a class="btn btn-primary" href="{{url_for('main.receipientdetails',tokenid = single_order.token,userid = current_user.identification)}}">Add Receipient</a>
-      <a class='btn btn-primary'href="{{url_for('main.confirm_order',tokenid = single_order.token,userID = current_user.identification)}}">Confirm Order</a>
-    </div>
+
+    <a class="btn btn-danger" href="{{url_for('main.cancel_order',token = single_order.token)}}">Cancel Order</a>
+    <a class="btn btn-primary" href="{{url_for('main.receipientdetails',tokenid = single_order.token,userid = current_user.identification)}}">Add Receipient</a>
+    <a class='btn btn-primary'href="{{url_for('main.confirm_order',tokenid = single_order.token,userID = current_user.identification)}}">Confirm Order</a>
   </div>
 </div>
     

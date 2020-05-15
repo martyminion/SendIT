@@ -1,40 +1,47 @@
 from . import main
-from flask import flash,render_template,redirect,url_for,request
-from flask_login import login_user,logout_user,login_required
-from ..models import User,DeliveryType,Zones,Orders,Receipient
+from flask import flash, render_template, redirect, url_for, request
+from flask_login import login_user, logout_user, login_required
+from ..models import User, DeliveryType, Zones, Orders, Receipient
 from ..email import mail_message
 from ..tokengenerator import autogenerate_token
-from .forms import ParcelOrderForm, UpdateParcelForm,DestinationForm,ReceipientForm
+from .forms import ParcelOrderForm, UpdateParcelForm, DestinationForm, ReceipientForm
 from .. import db
 
 
 @main.route('/')
 def index():
   title = "SendIT"
-  return render_template('index.html',title = title)
+  return render_template('index.html', title=title)
+
 
 @main.route('/services')
 def services():
   title = "Services"
   return render_template('services.html',title = title)
 
-@main.route('/mailtest/')
-def test_email_parameters():
+@main.route('/confirm/<tokenid>/<userID>', methods=['GET', 'POST'])
+def confirm_order(tokenid, userID):
+  flash("Order Confirmed Successfully")
+  orderdets = Orders.get_order_by_token(tokenid)
+  orderdets.deliveryStatus = "Client Confirmed"
+  db.session.commit()
+  user = User.query.filter_by(identification=userID).first()
+  mail_message("This is your receipt", "email/receipt", user.email, user=user, orderdets=orderdets)
   
-  mail_message("This is your receipt","email/receipt","martkimwaweru@gmail.com")
+
   return redirect(url_for('main.index'))
 
 
-@main.route('/<userid>/ParcelOrder/',methods = ['GET','POST'])
+@main.route('/<userid>/ParcelOrder/', methods=['GET', 'POST'])
 @login_required
 def Order(userid):
-  user = User.query.filter_by(identification = userid).first()
+  user = User.query.filter_by(identification=userid).first()
   cost = 200
   form = ParcelOrderForm()
   if form.validate_on_submit():
-    #check the parcelorder weight
+    # check the parcelorder weight
     if form.weight.data == "less than 1kg":
-      cost = cost + 500 
+      cost = cost + 500
 
     elif form.weight.data == "between 1kg and 2kg":
       cost = cost + 1000
@@ -46,12 +53,12 @@ def Order(userid):
       cost = cost + 2000
     else:
       flash("Please choose a valid option")
-    #check the parcel order type
+    # check the parcel order type
     if form.ParcelTypeName == "Perishable":
       cost = cost + 800
-    
+
     elif form.ParcelTypeName == " non Perishable":
-      cost =  cost + 200
+      cost = cost + 200
 
     elif form.ParcelTypeName == "Fragile":
       cost = cost + 1000
@@ -59,23 +66,25 @@ def Order(userid):
     elif form.ParcelTypeName == "non Fragile":
       cost = cost + 200
     new_token = autogenerate_token(5)
-    new_order = Orders(weight = form.weight.data, token = new_token, ParcelTypename = form.ParcelTypeName.data,NumberOfItem = form.NumberOfItem.data, user_id = user.identification,totalprice = cost)
-    
+    new_order = Orders(weight=form.weight.data, token=new_token, ParcelTypename=form.ParcelTypeName.data,
+                       NumberOfItem=form.NumberOfItem.data, user_id=user.identification, totalprice=cost)
+
     new_order.save_order()
 
-    return redirect(url_for('main.destination', newtoken = new_token))
+    return redirect(url_for('main.destination', newtoken=new_token))
 
-  return render_template('ParcelOrder.html', title='Create a Parcel Order', form=form )
+  return render_template('ParcelOrder.html', title='Create a Parcel Order', form=form)
 
-@main.route('/<newtoken>/destination/',methods = ["GET","POST"])
+
+@main.route('/<newtoken>/destination/', methods=["GET", "POST"])
 @login_required
 def destination(newtoken):
     form = DestinationForm()
-    new_order = Orders.query.filter_by(token = newtoken).first()
+    new_order = Orders.query.filter_by(token=newtoken).first()
     cost = new_order.totalprice + 500
     if form.validate_on_submit():
       if form.destination.data == "nairobi to naivasha":
-                 cost = cost + 200 
+        cost = cost + 200
 
       elif form.destination.data == "narobi to mombasa":
         cost = cost + 500
@@ -86,7 +95,7 @@ def destination(newtoken):
       else:
         flash("Please choose a valid option")
       #check the parcel order type
-      if form.deliverytype == "urgent":
+      if form.deliverytype == "express":
         cost = cost + 800
 
       elif form.deliverytype == " normal":
