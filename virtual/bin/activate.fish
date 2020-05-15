@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/patricia/Desktop/SendIT/virtual"
+set -gx VIRTUAL_ENV "/home/martin/Documents/Moringa-Core/Python/ProjectSendIT/SendIT/virtual"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
